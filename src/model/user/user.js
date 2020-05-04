@@ -15,7 +15,22 @@ const userSchema = new mongoose.Schema(
         }
       }
     },
-
+    username: {
+      type: String,
+      required: true,
+      unique: true
+    },
+    location:{
+      type: {
+        type: String, // Don't do `{ location: { type: String } }`
+        default: 'Point', // 'location.type' must be 'Point'
+        required: true
+      },
+      coordinates: {
+        type: [Number],
+        required: true
+      }
+    },
     password: {
       type: String,
       required: true,
@@ -39,8 +54,9 @@ const userSchema = new mongoose.Schema(
     timestamps: true
   }
 );
-
+userSchema.index({location: '2dsphere' });
 schemaMethods(userSchema);
+
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

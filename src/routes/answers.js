@@ -7,4 +7,8 @@ const auth = require('../middleware/auth');
 router.post('/add/answer', auth, (req, res) => {
   answerController.add(req, res);
 });
+
+router.get('/answers/search', auth, (req, res) => {
+  answerController.search(req, res);
+});
 module.exports = router;

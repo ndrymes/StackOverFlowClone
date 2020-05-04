@@ -30,6 +30,7 @@ const questionSchema = new mongoose.Schema(
     timestamps: true
   }
 );
+questionSchema.index({ title: 'text', description: 'text' });
 questionSchema.virtual('answers', {
   ref: 'Answers',
   foreignField: 'question',

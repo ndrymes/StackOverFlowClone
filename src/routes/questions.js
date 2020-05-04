@@ -16,4 +16,7 @@ router.put('/update/question/:id', auth, (req, res) => {
 router.put('/vote/question/:id', auth, (req, res) => {
   questionController.vote(req, res);
 });
+router.get('/questions/search', auth, (req, res) => {
+  questionController.search(req, res);
+});
 module.exports = router;

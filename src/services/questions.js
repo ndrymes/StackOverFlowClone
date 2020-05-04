@@ -10,7 +10,18 @@ class QuestionServices {
     return Questions.findByIdAndUpdate(id, field, {
       new: true,
       runValidators: true
-    }).lean();
+    })
+      .lean()
+      .exec();
+  }
+  search(search, limit, skip) {
+    return Questions.find(search)
+      .limit(limit)
+      .skip(skip)
+      .sort({
+        title: 'asc'
+      })
+      .exec();
   }
 }
 const questionServices = new QuestionServices();

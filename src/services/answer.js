@@ -5,7 +5,18 @@ class AnswerServices {
     return Answer.create(data);
   }
   getsubscriber(question) {
-    return Subcriber.find({ question, active: true }).select('email');
+    return Subcriber.find({ question, active: true })
+      .select('email')
+      .exec();
+  }
+  search(search, limit, skip) {
+    return Answer.find(search)
+      .limit(limit)
+      .skip(skip)
+      .sort({
+        title: 'asc'
+      })
+      .exec();
   }
 }
 const answerServices = new AnswerServices();

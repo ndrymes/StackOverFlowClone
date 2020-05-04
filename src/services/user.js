@@ -13,6 +13,15 @@ class UserServices {
   async addSubscription(data) {
     return Subscription.create(data);
   }
+  search(search, limit, skip) {
+    return User.find(search)
+      .limit(limit)
+      .skip(skip)
+      .sort({
+        title: 'asc'
+      })
+      .exec();
+  }
 }
 const userServices = new UserServices();
 module.exports = userServices;

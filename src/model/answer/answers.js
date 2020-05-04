@@ -39,5 +39,6 @@ const answerSchema = new mongoose.Schema(
     timestamps: true
   }
 );
+answerSchema.index({ title: 'text', description: 'text' });
 const Answers = mongoose.model('Answers', answerSchema);
 module.exports = Answers;
