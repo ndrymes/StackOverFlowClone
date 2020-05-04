@@ -4,9 +4,12 @@ const cors = require('cors');
 //know what compression is really used for and cors
 const compression = require('compression');
 const API_VERSION = '/v1';
+require('./jobs/distributeUser');
 const userRoute = require('./routes/user');
-
+const questionRoute = require('./routes/questions');
+const answerRoute = require('./routes/answers');
 const app = express();
+
 app.use(bodyParser.json());
 //know what .urlencoded
 app.use(
@@ -19,6 +22,8 @@ app.use(cors());
 
 //
 app.use(API_VERSION, userRoute);
+app.use(API_VERSION, questionRoute);
+app.use(API_VERSION, answerRoute);
 
 app.get('/', (req, res) => {
   res.status(200).send({
