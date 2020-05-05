@@ -2,10 +2,10 @@
 This is a mock clone of stack over flow for purpose of test
 ## Technologies Used
 ```
-- Backend:Node/Express
-- MongoDb
-- RabbitMQ
--Libaries : prettier, jest, express
+Backend:Node/Express
+MongoDb
+RabbitMQ
+Libaries : prettier, jest, express
 ```
 ##  To Install
 
