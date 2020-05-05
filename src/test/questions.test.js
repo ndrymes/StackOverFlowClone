@@ -5,9 +5,6 @@ const Questions = require('../model/question/questions');
 const { user } = require('./dummyuser');
 const user_1 = user[0];
 
-beforeAll(async () => {
-  await Questions.create(question);
-});
 const question = {
   _id: mongoose.Types.ObjectId(),
   title: 'javascript',
@@ -16,6 +13,9 @@ const question = {
 };
 
 describe('View Questions', () => {
+  beforeAll(async () => {
+    await Questions.create(question);
+  });
   test('it should throw error for invalidIdType', async () => {
     await request(app)
       .get('/v1/question/5eaedb5e0f0ecb1c45e')

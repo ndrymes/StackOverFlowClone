@@ -38,6 +38,7 @@ class Answers {
         date,
         question: questionId
       };
+
       const subscribers = await answerServices.getsubscriber(questionId);
       param.owner = req.user._id;
       const answers = await answerServices.add(param);
@@ -77,7 +78,6 @@ class Answers {
           .status(400)
           .send(responsesHelper.error(400, 'Please add content to search'));
       }
-
       const search = {
         $or: [
           {
@@ -97,7 +97,7 @@ class Answers {
 
       const answers = await answerServices.search(search, limit, skip);
 
-      const count = questions.length;
+      const count = answers.length;
       res
         .status(200)
         .send(
