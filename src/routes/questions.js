@@ -13,10 +13,10 @@ router.get('/question/:id', (req, res) => {
 router.put('/update/question/:id', auth, (req, res) => {
   questionController.update(req, res);
 });
-router.put('/vote/question/:id', auth, (req, res) => {
+router.post('/vote/question/:id', auth, (req, res) => {
   questionController.vote(req, res);
 });
-router.get('/questions/search', auth, (req, res) => {
+router.get('/questions/search', (req, res) => {
   questionController.search(req, res);
 });
 module.exports = router;

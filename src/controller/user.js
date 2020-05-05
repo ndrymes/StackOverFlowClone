@@ -12,8 +12,8 @@ class User {
       const userExist = await userServices.getUser({ email: data.email });
       if (userExist) {
         return res
-          .status(500)
-          .send(responsesHelper.error(500, 'Email already registered.'));
+          .status(400)
+          .send(responsesHelper.error(400, 'Email already registered.'));
       }
       if (!data.lat || !data.long) {
         return res
@@ -35,10 +35,9 @@ class User {
 
       const user = await userServices.addUser(param);
       await user.generateAuthToken();
-      
       await user.save();
-      user
-      res.status(201).send(responsesHelper.success(200, user));
+      user;
+      res.status(200).send(responsesHelper.success(200, user));
     } catch (error) {
       Logger.error(`${error}`);
       res.status(500).send(responsesHelper.error(500, `${error}`));
@@ -57,16 +56,16 @@ class User {
       if (user) {
         if (encryptionManager.compareHashed(password, user.password)) {
           await user.generateAuthToken();
-          return res.status(200).send(responsesHelper.success(200, user));
+          return res.status(201).send(responsesHelper.success(200, user));
         } else {
           return res
-            .status(500)
-            .send(responsesHelper.error(500, 'Incorrect Password'));
+            .status(400)
+            .send(responsesHelper.error(400, 'Incorrect Password'));
         }
       } else {
         return res
-          .status(500)
-          .send(responsesHelper.error(500, 'User does not exist.'));
+          .status(400)
+          .send(responsesHelper.error(400, 'User does not exist.'));
       }
     } catch (error) {
       res.status(500).send(responsesHelper.error(500, `${error}`));
@@ -118,12 +117,12 @@ class User {
         limit = 10;
         skip = 0;
       }
-      if (!q) {
+      if (!lat || !long) {
         return res
           .status(400)
-          .send(responsesHelper.error(400, 'Please add content to search'));
+          .send(responsesHelper.error(400, 'lat and long is required'));
       }
-      
+
       const search = {
         location: {
           $near: {
@@ -150,7 +149,7 @@ class User {
         );
     } catch (error) {
       console.log(error);
-      
+
       res.status(500).send(responsesHelper.error(500, `${error}`));
     }
   }

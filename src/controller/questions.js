@@ -9,6 +9,11 @@ class Questions {
   async add(req, res) {
     const data = req.body;
     const date = currentTime();
+    if (!data.title || !data.description) {
+      return res
+        .status(400)
+        .send(responsesHelper.error(400, 'Title and description are required'));
+    }
     const param = {
       title: data.title,
       description: data.description,

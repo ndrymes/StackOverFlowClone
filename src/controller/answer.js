@@ -22,13 +22,14 @@ class Answers {
         .status(400)
         .send(responsesHelper.error(400, 'invalid questionId'));
     }
+
     const question = await questionService.getById({ _id: questionId });
+
     if (!question) {
       return res
         .status(400)
         .send(responsesHelper.error(400, 'invalid request'));
     }
-
     try {
       const date = currentTime();
       const param = {

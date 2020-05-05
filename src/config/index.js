@@ -4,7 +4,8 @@ const config = {
   PORT: process.env.PORT,
   JWTSECRET: process.env.JWTSECRET,
   MONGODB: {
-    MONGODBURL: process.env.MONGODBURL
+    MONGODBURL: process.env.MONGODBURL,
+    TESTDB: process.env.TESTDB
   },
   ACCESSTYPE: {
     USER: 'auth'

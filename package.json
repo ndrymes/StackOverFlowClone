@@ -9,7 +9,10 @@
     "prettier:base": "prettier --parser typescript --single-quote",
     "prettier:check": "npm run prettier:base -- --list-different \"src/**/*.{js,jsx}\"",
     "prettier:write": "npm run prettier:base -- --write \"src/**/*.{js,jsx}\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": " jest --watchAll"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "author": "Wole Sunmonu",
   "license": "ISC",
@@ -28,5 +31,9 @@
     "sendgrid": "^5.2.3",
     "validator": "^13.0.0",
     "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "jest": "^25.5.4",
+    "supertest": "^4.0.2"
   }
 }

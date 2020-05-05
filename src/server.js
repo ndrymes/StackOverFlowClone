@@ -1,5 +1,4 @@
 const app = require('./app');
-const db = require('./db/mongoose');
 const Logger = require('./utils/logger');
 
 const PORT = require('./config/index').PORT;

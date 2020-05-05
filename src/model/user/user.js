@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true
     },
-    location:{
+    location: {
       type: {
         type: String, // Don't do `{ location: { type: String } }`
         default: 'Point', // 'location.type' must be 'Point'
@@ -54,9 +54,8 @@ const userSchema = new mongoose.Schema(
     timestamps: true
   }
 );
-userSchema.index({location: '2dsphere' });
+userSchema.index({ location: '2dsphere' });
 schemaMethods(userSchema);
-
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

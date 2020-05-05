@@ -4,7 +4,8 @@ const cors = require('cors');
 //know what compression is really used for and cors
 const compression = require('compression');
 const API_VERSION = '/v1';
-require('./jobs/distributeUser');
+require('./db/mongoose');
+require('./jobs/sendMail');
 const userRoute = require('./routes/user');
 const questionRoute = require('./routes/questions');
 const answerRoute = require('./routes/answers');
