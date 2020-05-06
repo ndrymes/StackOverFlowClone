@@ -38,7 +38,7 @@ describe('User', () => {
       .send({
         email: 'sunmonuoluwoleAyo@gmail.com',
         password: 'wolexhh',
-        username: 'wolex',
+        name: 'wolex',
         lat: 3.5266233999999996,
         long: 6.439401999999999
       })
@@ -54,7 +54,7 @@ describe('User', () => {
       .send({
         email: 'sunmonuoluwdsole@yahoo.com',
         password: 'wolexhh',
-        username: 'boss'
+        name: 'boss'
       })
       .expect(400)
       .then(response => {
@@ -68,7 +68,7 @@ describe('User', () => {
       .send({
         email: 'sunmonuoluwdsole@yahoo.com',
         password: 'wolexhh',
-        username: 'boss',
+        name: 'boss',
         lat: 3.5266233999999996,
         long: 6.439401999999999
       })
@@ -233,7 +233,7 @@ describe('Answers', () => {
         questionId: '5eafd5f38b31f4474a6b531e'
       })
       .then(response => {
-        expect(response.body.message).toBe('invalid request');
+        expect(response.body.message).toBe('invalid questionId');
       });
   });
 
@@ -248,7 +248,7 @@ describe('Answers', () => {
         questionId: 'QUE598'
       })
       .then(response => {
-        expect(response.body.message).toBe('invalid questionId');
+        expect(response.body.message).toBe('invalid Id type');
       });
   });
 

@@ -15,10 +15,9 @@ const userSchema = new mongoose.Schema(
         }
       }
     },
-    username: {
+    name: {
       type: String,
       required: true,
-      unique: true
     },
     location: {
       type: {
@@ -36,7 +35,6 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 6
     },
-    avatar: { data: Buffer },
     tokens: [
       {
         access: {

@@ -39,6 +39,12 @@ const answerSchema = new mongoose.Schema(
     timestamps: true
   }
 );
+answerSchema.methods.toJSON = function () {
+  const answer = this
+  const newAnswer = answer.toObject()
+  delete newAnswer.owner
+  return newAnswer
+}
 answerSchema.index({ title: 'text', description: 'text' });
 const Answers = mongoose.model('Answers', answerSchema);
 module.exports = Answers;

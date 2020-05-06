@@ -8,7 +8,7 @@ const users = [
     _id: userId_1,
     email: 'sunmonuoluwoleAyo@gmail.com',
     password: 'wolexhh',
-    username: 'wolex',
+    name: 'wolex',
     location: {
       coordinates: [6.439401999999999, 3.5266233999999996]
     },
@@ -24,7 +24,7 @@ const users = [
     _id: userId_2,
     email: 'Ayowonderland@softcom.com',
     password: '@$%^&234',
-    username: 'ayorinde1',
+    name: 'ayorinde1',
     location: {
       coordinates: [6.439401999999999, 3.5266233999999996]
     },

@@ -30,6 +30,12 @@ const questionSchema = new mongoose.Schema(
     timestamps: true
   }
 );
+questionSchema.methods.toJSON = function () {
+  const question = this
+  const newQuestion = question.toObject()
+  delete newQuestion.owner
+  return newQuestion
+}
 questionSchema.index({ title: 'text', description: 'text' });
 questionSchema.virtual('answers', {
   ref: 'Answers',

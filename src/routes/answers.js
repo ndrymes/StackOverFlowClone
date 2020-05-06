@@ -7,7 +7,7 @@ const auth = require('../middleware/auth');
 router.post('/add/answer', auth, (req, res) => {
   answerController.add(req, res);
 });
-
+//search
 router.get('/answers/search', (req, res) => {
   answerController.search(req, res);
 });
