@@ -1,0 +1,27 @@
+{
+  "name": "softcom_test",
+  "version": "1.0.0",
+  "description": "A clone of stackOverflow ",
+  "main": "server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js ",
+    "prettier:base": "prettier --parser typescript --single-quote",
+    "prettier:check": "npm run prettier:base -- --list-different \"src/**/*.{js,jsx}\"",
+    "prettier:write": "npm run prettier:base -- --write \"src/**/*.{js,jsx}\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wole Sunmonu",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.11",
+    "validator": "^13.0.0",
+    "winston": "^3.2.1"
+  }
+}
