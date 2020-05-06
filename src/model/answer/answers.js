@@ -15,11 +15,6 @@ const answerSchema = new mongoose.Schema(
     date: {
       type: String
     },
-    // i will considered a check mark as a feature later
-    //   answered:{
-    //     type: Boolean,
-    //     default: false
-    //   },
     vote: {
       type: Number,
       default: 0
