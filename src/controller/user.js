@@ -1,9 +1,10 @@
 'use strict';
+const mongoose = require('mongoose');
 const userServices = require('../services/user');
 const responsesHelper = require('../libs/responsehelper');
-const encryptionManager = require('../utils/encryption');
-const Logger = require('../libs/logger');
-const config = require('../config/index');
+const encryptionManager = require('../libs/encryption');
+const Logger = require('../utils/logger');
+
 class User {
   async signUp(req, res) {
     let data = req.body;
@@ -22,10 +23,8 @@ class User {
       const user = await userServices.addUser(param);
       await user.generateAuthToken();
       await user.save();
-      res.status(200).send(responsesHelper.success(200, user));
+      res.status(201).send(responsesHelper.success(200, user));
     } catch (error) {
-      console.log(error);
-
       Logger.error(`${error}`);
       res.status(500).send(responsesHelper.error(500, `${error}`));
     }
@@ -66,6 +65,31 @@ class User {
       });
       await req.user.save();
       res.status(200).send(responsesHelper.success(200, 'logout succesful'));
+    } catch (error) {
+      res.status(500).send(responsesHelper.error(500, `${error}`));
+    }
+  }
+  async subscribe(req, res) {
+    try {
+      const { questionId } = req.body;
+      if (!questionId) {
+        return res
+          .status(400)
+          .send(responsesHelper.error(400, ' questionId is required'));
+      }
+      const isValid = mongoose.Types.ObjectId.isValid(questionId);
+      if (!isValid) {
+        return res
+          .status(400)
+          .send(responsesHelper.error(400, 'invalid questionId'));
+      }
+      const param = {
+        user: req.user._id,
+        question: questionId,
+        email: req.user.email
+      };
+      const subscription = await userServices.addSubscription(param);
+      res.status(200).send(responsesHelper.success(200, subscription));
     } catch (error) {
       res.status(500).send(responsesHelper.error(500, `${error}`));
     }

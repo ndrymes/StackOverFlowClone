@@ -1,8 +1,8 @@
 'use strict';
 
 const jwt = require('jsonwebtoken');
-const config = require('../config/index');
-const encrptionManager = require('./encryption');
+const config = require('../../config/index');
+const encrptionManager = require('../../libs/encryption');
 function methods(Schema) {
   Schema.pre('save', function(next) {
     const user = this;

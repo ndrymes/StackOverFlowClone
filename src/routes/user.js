@@ -13,4 +13,7 @@ router.post('/login', (req, res) => {
 router.post('/logout', auth, (req, res) => {
   userController.logOut(req, res);
 });
+router.post('/add/subscription', auth, (req, res) => {
+  userController.subscribe(req, res);
+});
 module.exports = router;
