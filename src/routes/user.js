@@ -16,4 +16,7 @@ router.post('/logout', auth, (req, res) => {
 router.post('/add/subscription', auth, (req, res) => {
   userController.subscribe(req, res);
 });
+router.get('/user/search', auth, (req, res) => {
+  userController.search(req, res);
+});
 module.exports = router;

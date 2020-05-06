@@ -1,8 +1,10 @@
+const mongoose = require('mongoose');
 const questionServices = require('../services/questions');
 const currentTime = require('../utils/getcurrentDate');
 const Logger = require('../utils/logger');
 const responsesHelper = require('../libs/responsehelper');
-const mongoose = require('mongoose');
+const meta = require('../utils/metagenerator');
+
 class Questions {
   async add(req, res) {
     const data = req.body;
@@ -120,6 +122,55 @@ class Questions {
       const incValue = { $inc: { vote: value } };
       const updated = await questionServices.updateById(id, incValue);
       res.status(200).send(responsesHelper.success(200, updated));
+    } catch (error) {
+      res.status(500).send(responsesHelper.error(500, `${error}`));
+    }
+  }
+  async search(req, res) {
+    try {
+      let { limit, skip, q } = req.query;
+      limit = parseInt(limit);
+      skip = parseInt(skip);
+      if (!limit || !skip) {
+        limit = 10;
+        skip = 0;
+      }
+      if (!q) {
+        return res
+          .status(400)
+          .send(responsesHelper.error(400, 'Please add content to search'));
+      }
+
+      const search = {
+        $or: [
+          {
+            title: {
+              $regex: q,
+              $options: 'i'
+            }
+          },
+          {
+            description: {
+              $regex: q,
+              $options: 'i'
+            }
+          }
+        ]
+      };
+
+      const questions = await questionServices.search(search, limit, skip);
+
+      const count = questions.length;
+      res
+        .status(200)
+        .send(
+          responsesHelper.success(
+            200,
+            questions,
+            'All questions retrieved succesfully',
+            meta(limit, skip, count)
+          )
+        );
     } catch (error) {
       res.status(500).send(responsesHelper.error(500, `${error}`));
     }

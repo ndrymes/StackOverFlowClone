@@ -14,7 +14,7 @@ const sendMail = async (to, from, subject, message) => {
         user: config.email.NODEMAILER_USER,
         pass: config.email.NODEMAILER_PASSWORD
       }
-    }); 
+    });
     const mailOptions = {
       text: message,
       to,
