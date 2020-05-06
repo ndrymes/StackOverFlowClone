@@ -16,7 +16,6 @@ const config = {
     RABBIT_USERNAME: process.env.RABBIT_USERNAME,
     RABBIT_PASSWORD: process.env.RABBIT_PASSWORD
   },
-  SENDGRIDAPIKEY: process.env.SENDGRID_API_KEY,
   email: {
     NODEMAILER_USER: process.env.NODEMAILER_USER,
     NODEMAILER_PORT: process.env.NODEMAILER_PORT,
