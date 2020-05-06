@@ -24,5 +24,12 @@ function methods(Schema) {
     await user.save();
     return token;
   };
+  Schema.methods.toJSON = function () {
+    const user = this
+    const newUser = user.toObject()
+    delete newUser.password
+    delete newUser.tokens
+    return newUser
+}
 }
 module.exports = methods;
